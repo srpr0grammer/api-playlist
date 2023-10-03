@@ -1,6 +1,6 @@
 package com.apiplaylist.controller;
 
-import com.apiplaylist.models.dto.AuthetinticationDTO;
+import com.apiplaylist.models.dto.AuthenticationDTO;
 import com.apiplaylist.models.dto.LoginResponseDTO;
 import com.apiplaylist.models.dto.RegisterDTO;
 import com.apiplaylist.models.dto.UserResponse;
@@ -26,8 +26,8 @@ public class AuthController {
     private ModelMapper modelMapper;
 
     @PostMapping("/login")
-    public ResponseEntity<LoginResponseDTO> login(@RequestBody @Valid AuthetinticationDTO authetinticationDto){
-        var loginResponse = authorizationService.login(authetinticationDto);
+    public ResponseEntity<LoginResponseDTO> login(@RequestBody @Valid AuthenticationDTO authenticationDto){
+        var loginResponse = authorizationService.login(authenticationDto);
         return ResponseEntity.ok(loginResponse);
     }
 

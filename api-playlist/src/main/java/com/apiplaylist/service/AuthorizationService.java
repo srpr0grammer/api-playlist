@@ -1,6 +1,6 @@
 package com.apiplaylist.service;
 
-import com.apiplaylist.models.dto.AuthetinticationDTO;
+import com.apiplaylist.models.dto.AuthenticationDTO;
 import com.apiplaylist.models.dto.LoginResponseDTO;
 import com.apiplaylist.models.dto.RegisterDTO;
 import com.apiplaylist.models.dto.UserResponse;
@@ -42,7 +42,7 @@ public class AuthorizationService implements UserDetailsService {
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
         return userRepository.findByUsername(userName);
     }
-    public LoginResponseDTO login(@RequestBody @Valid AuthetinticationDTO data){
+    public LoginResponseDTO login(@RequestBody @Valid AuthenticationDTO data){
         authenticationManager = context.getBean(AuthenticationManager.class);
 
         var usernamePassword = new UsernamePasswordAuthenticationToken(data.userName(), data.password());
