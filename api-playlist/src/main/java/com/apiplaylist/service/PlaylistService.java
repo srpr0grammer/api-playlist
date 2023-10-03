@@ -1,13 +1,12 @@
 package com.apiplaylist.service;
 
-import com.apiplaylist.models.Playlist;
+import com.apiplaylist.models.entity.Playlist;
 import com.apiplaylist.repository.PlaylistRepository;
 import com.apiplaylist.service.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PlaylistService {

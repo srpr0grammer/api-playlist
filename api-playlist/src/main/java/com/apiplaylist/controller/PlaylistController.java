@@ -1,7 +1,7 @@
 package com.apiplaylist.controller;
 
-import com.apiplaylist.models.Playlist;
 import com.apiplaylist.models.dto.PlaylistDTO;
+import com.apiplaylist.models.entity.Playlist;
 import com.apiplaylist.service.PlaylistService;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;

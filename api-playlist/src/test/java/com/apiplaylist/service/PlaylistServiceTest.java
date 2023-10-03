@@ -1,6 +1,6 @@
 package com.apiplaylist.service;
 
-import com.apiplaylist.models.Playlist;
+import com.apiplaylist.models.entity.Playlist;
 import com.apiplaylist.repository.PlaylistRepository;
 import com.apiplaylist.service.exception.ObjectNotFoundException;
 import org.junit.jupiter.api.Test;

@@ -1,6 +1,8 @@
 package com.apiplaylist.controller.exception;
 
+import com.apiplaylist.service.exception.BadRequestException;
 import com.apiplaylist.service.exception.DataIntegrityViolationException;
+import com.apiplaylist.service.exception.ForbiddenException;
 import com.apiplaylist.service.exception.ObjectNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
@@ -18,6 +20,20 @@ public class ControllerExceptionHandler {
         StandardError err = new StandardError(HttpStatus.NOT_FOUND.value(), e.getMessage());
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
+    }
+
+    @ExceptionHandler(ForbiddenException.class)
+    public ResponseEntity<StandardError> forbiddenException(ForbiddenException e, HttpServletRequest request){
+        StandardError err = new StandardError(HttpStatus.FORBIDDEN.value(), e.getMessage());
+
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(err);
+    }
+
+    @ExceptionHandler(BadRequestException.class)
+    public ResponseEntity<StandardError> badRequestException(BadRequestException e, HttpServletRequest request){
+        StandardError err = new StandardError(HttpStatus.BAD_REQUEST.value(), e.getMessage());
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(err);
     }
 
     @ExceptionHandler(DataIntegrityViolationException.class)

@@ -1,4 +1,4 @@
-package com.apiplaylist.models;
+package com.apiplaylist.models.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

@@ -1,7 +1,7 @@
 package com.apiplaylist.controller;
 
 
-import com.apiplaylist.models.Playlist;
+import com.apiplaylist.models.entity.Playlist;
 import com.apiplaylist.models.dto.MusicDTO;
 import com.apiplaylist.models.dto.PlaylistDTO;
 import com.apiplaylist.service.PlaylistService;
@@ -20,7 +20,6 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
-import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
@@ -33,7 +32,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 // Para trabalhar com JSON:
-import org.springframework.http.MediaType;
 
 import java.util.Collections;
 import java.util.List;
