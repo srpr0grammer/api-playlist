@@ -1,6 +1,8 @@
 package com.apiplaylist.service;
 
+import com.apiplaylist.models.dto.PlaylistDTO;
 import com.apiplaylist.models.entity.Playlist;
+import com.apiplaylist.repository.MusicRepository;
 import com.apiplaylist.repository.PlaylistRepository;
 import com.apiplaylist.service.exception.ObjectNotFoundException;
 import org.junit.jupiter.api.Test;
@@ -8,7 +10,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.modelmapper.ModelMapper;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -22,8 +26,13 @@ public class PlaylistServiceTest {
 
     @Mock
     private PlaylistRepository playlistRepository;
+    @Mock
+    private MusicRepository musicRepository;
+    @Mock
+    private ModelMapper modelMapper;
     @InjectMocks
     private PlaylistService playlistService;
+
 
     @Test
     public void testCreatePlaylist() {

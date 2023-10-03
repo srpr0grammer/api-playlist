@@ -1,57 +1,78 @@
 package com.apiplaylist.controller;
 
 
-import com.apiplaylist.models.entity.Playlist;
 import com.apiplaylist.models.dto.MusicDTO;
 import com.apiplaylist.models.dto.PlaylistDTO;
+import com.apiplaylist.models.entity.Playlist;
+import com.apiplaylist.models.entity.User;
+import com.apiplaylist.models.enums.UserRole;
+import com.apiplaylist.repository.UserRepository;
+import com.apiplaylist.security.SecurityFilter;
+import com.apiplaylist.security.TokenService;
+import com.apiplaylist.service.AuthorizationService;
 import com.apiplaylist.service.PlaylistService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mockito;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.ApplicationContext;
 import org.springframework.http.MediaType;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.when;
-
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-
-// Se você for usar JSON no corpo das suas requisições ou respostas:
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-
-// Para trabalhar com JSON:
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
 
 import java.util.Collections;
 import java.util.List;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
 @ExtendWith(SpringExtension.class)
-@WebMvcTest
+@WebMvcTest(PlaylistController.class)
+@ActiveProfiles("test")
 public class PlaylistControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
-
+    @MockBean
+    private UserRepository userRepository;
+    @MockBean
+    private TokenService tokenService;
     @MockBean
     private PlaylistService playlistService;
-
     @MockBean
     private ModelMapper modelMapper;
-
+    @MockBean
+    private AuthorizationService authorizationService;
+    @MockBean
+    private ApplicationContext context;
+    @Autowired
+    private WebApplicationContext webApplicationContext;
+    @MockBean
+    private SecurityFilter securityFilter;
     @Autowired
     private ObjectMapper objectMapper;
 
+    @BeforeEach
+    public void setupSecurityContext() {
+        mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+
+    }
     @Test
     public void testCreatePlaylist() throws Exception {
         MusicDTO sampleMusic = new MusicDTO(null, "Imagine", "John Lennon", "Imagine", "1971", "Rock");
@@ -128,6 +149,5 @@ public class PlaylistControllerTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNoContent());
     }
-
 
 }

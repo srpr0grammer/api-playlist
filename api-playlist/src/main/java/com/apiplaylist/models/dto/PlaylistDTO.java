@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -21,5 +22,5 @@ public class PlaylistDTO {
     private String nome;
 
     private String descricao;
-    private List<MusicDTO> musicas;
+    private List<MusicDTO> musicas = new ArrayList<>();
 }

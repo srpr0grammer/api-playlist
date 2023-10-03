@@ -66,7 +66,7 @@ public class AuthorizationServiceTest {
         SecurityContext securityContext = mock(SecurityContext.class);
         when(securityContext.getAuthentication()).thenReturn(authentication);
         SecurityContextHolder.setContext(securityContext);
-        when(authentication.getAuthorities()).thenReturn(Collections.emptyList());  // Assuming no special authorities
+        when(authentication.getAuthorities()).thenReturn(Collections.emptyList());
 
         when(userRepository.findByUsername("testUser")).thenReturn(null);
         when(userRepository.save(any(User.class))).thenReturn(user);

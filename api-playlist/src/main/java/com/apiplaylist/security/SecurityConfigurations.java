@@ -31,6 +31,13 @@ public class SecurityConfigurations {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(new AntPathRequestMatcher("/auth/login", HttpMethod.POST.toString())).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/auth/register", HttpMethod.POST.toString())).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/api/music", HttpMethod.POST.toString())).authenticated()
+                        .requestMatchers(new AntPathRequestMatcher("/api/music/**", HttpMethod.GET.toString())).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/api/music", HttpMethod.DELETE.toString())).authenticated()
+                        .requestMatchers(new AntPathRequestMatcher("/api/playlist", HttpMethod.POST.toString())).authenticated()
+                        .requestMatchers(new AntPathRequestMatcher("/api/playlist/**", HttpMethod.GET.toString())).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/api/playlist", HttpMethod.DELETE.toString())).authenticated()
+
                         .anyRequest().permitAll()
                 )
                 .headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin))
