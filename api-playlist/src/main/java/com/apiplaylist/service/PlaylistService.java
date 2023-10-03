@@ -24,7 +24,7 @@ public class PlaylistService {
 
     public Playlist createPlaylist(Playlist playlist) {
         if(playlist.getNome() == null || playlist.getNome().isEmpty()) {
-            throw new BadRequestException("Nome da lista não é válido");
+            throw new BadRequestException("Nome da lista é inválido");
         }
 
         return playlistRepository.save(playlist);

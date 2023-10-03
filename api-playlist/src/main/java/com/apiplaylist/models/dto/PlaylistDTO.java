@@ -17,8 +17,6 @@ import java.util.List;
 public class PlaylistDTO {
 
     private Long id;
-
-    @NotBlank(message = "Nome da lista é inválido!")
     private String nome;
 
     private String descricao;
