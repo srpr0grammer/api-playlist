@@ -96,6 +96,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>api-playlist</finalName>
 	</build>
 
 </project>
