@@ -39,6 +39,7 @@ public class PlaylistService {
     }
 
     public void deletePlaylist(Long id) {
+        getPlaylistById(id);
         playlistRepository.deleteById(id);
     }
 

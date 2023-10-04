@@ -80,6 +80,11 @@ public class MusicServiceTest {
     }
     @Test
     void testDeleteMusic() {
+        Music music = new Music();
+        music.setTitulo("Test Music");
+
+        when(musicRepository.findById(1L)).thenReturn(Optional.of(music));
+
         doNothing().when(musicRepository).deleteById(1L);
 
         musicService.deleteMusic(1L);

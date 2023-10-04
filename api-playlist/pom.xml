@@ -9,7 +9,7 @@
 		<relativePath/>
 	</parent>
 	<groupId>com.</groupId>
-	<artifactId>api-playlist</artifactId>
+	<artifactId>yml</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>api-playlist</name>
 	<description>PlayList API</description>

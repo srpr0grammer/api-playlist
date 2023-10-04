@@ -86,6 +86,11 @@ public class PlaylistServiceTest {
 
     @Test
     public void testDeletePlaylist() {
+        Playlist playlist = new Playlist();
+        playlist.setNome("Test Playlist");
+
+        when(playlistRepository.findById(1L)).thenReturn(Optional.of(playlist));
+
         doNothing().when(playlistRepository).deleteById(1L);
 
         playlistService.deletePlaylist(1L);

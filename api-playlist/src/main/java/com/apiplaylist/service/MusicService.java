@@ -28,6 +28,7 @@ public class MusicService {
     }
 
     public void deleteMusic(Long id) {
+        getMusicById(id);
         repository.deleteById(id);
     }
 }

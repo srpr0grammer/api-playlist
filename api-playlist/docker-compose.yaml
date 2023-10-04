@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  api-playlist:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: ${H2_URL}
+      SPRING_DATASOURCE_USERNAME: ${H2_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${H2_PASSWORD}
