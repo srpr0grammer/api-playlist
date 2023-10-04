@@ -6,7 +6,7 @@ PlaylistAPI + Docker.
 
 ## 💬 Sobre o repositório.
 
-Repositório onde se consiste em um CRUD de cliente.
+Repositório onde se consiste em um serviço de Playlist.
 ## ⚠ Pré-requisitos para execução do projeto
 
 * docker e docker-composer instalado
