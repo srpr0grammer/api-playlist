@@ -1,6 +1,6 @@
 <br>
 <h1 align="center">
-APi-Cliente + Docker.
+PlaylistAPI + Docker.
 </h1>
 <br>
 
