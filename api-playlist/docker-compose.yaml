@@ -1,13 +1,23 @@
-version: '3.8'
-
+version: '3'
 services:
-  api-playlist:
-    build:
-      context: .
-      dockerfile: Dockerfile
+  api:
+    container_name: playlist-api
+    image: playlist-api
+    build: ./
     ports:
       - "8080:8080"
+    depends_on:
+      - db
     environment:
-      SPRING_DATASOURCE_URL: ${H2_URL}
-      SPRING_DATASOURCE_USERNAME: ${H2_USERNAME}
-      SPRING_DATASOURCE_PASSWORD: ${H2_PASSWORD}
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/playlist-db
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: admin
+  db:
+    container_name: postgres-db-playlist-api
+    image: postgres
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: playlist-db
+    ports:
+      - "5433:5432"
